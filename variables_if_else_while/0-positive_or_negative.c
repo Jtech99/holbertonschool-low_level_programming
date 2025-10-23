@@ -1,31 +1,31 @@
-#include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 
 /**
-* main - prints the size of various types
+* main - point d'entrée du programme
 *
-* Return: Always 0 (Success)
+* Return: toujours 0 (succès)
 */
 
 int main(void)
 {
 int n;
 
-srand(time(0);
+srand(time(0));
 n = rand() - RAND_MAX / 2;
 
-if (n>0)
-	{
-		printf("d is positive\n", n);
-	}
-	else if (n == 0)
-	{
-		printf("%d is zero\n", n);
-	}
-	else if (n<0)
-	{    
-		printf("%d is negative\n", n);
-	}
-	return (0);
+if (n > 0)
+{
+printf("%d is positive\n", n);
+}
+else if (n == 0)
+{
+printf("%d is zero\n", n);
+}
+else if (n < 0)
+{
+printf("%d is negative\n", n);
+}
+return (0);
 }
