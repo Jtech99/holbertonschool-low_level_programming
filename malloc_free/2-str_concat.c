@@ -1,54 +1,37 @@
 #include "main.h"
 #include <stdlib.h>
+
 /**
- * str_concat - concatenates two strings into newly allocated memory
+ * str_concat - concatenates two strings
  * @s1: first string
  * @s2: second string
  *
- * Return: pointer to newly allocated string containing s1 + s2
+ * Return: pointer to newly allocated space with s1 + s2, or NULL on failure
  */
-
 char *str_concat(char *s1, char *s2)
 {
-int leng1, leng2;
-char *result;
-int i;
+	char *res;
+	int i, j, len1 = 0, len2 = 0;
 
-/* si on recoit un pointeur vide on le met en "" */
-if (s1 == NULL)
-{
-	s1 = "";
-}
-if (s2 == NULL)
-{
-	s2 = "";
-}
-	/* boucle vide pour compter les char s1 */
-	for (leng1 = 0; s1[leng1] != '\0'; leng1++)
-	;
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 
-	for (leng2 = 0; s2[leng2] != '\0'; leng2++)
-	;
-	/* allouer la mémoire pour la nouvelle chaîne */
-	result = malloc((leng1 + leng2 + 1) * sizeof(char));
-	if (result == NULL) /* vérifier si malloc échour */
+	while (s1[len1])
+		len1++;
+	while (s2[len2])
+		len2++;
+
+	res = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (res == NULL)
 		return (NULL);
 
-	/* copier les caractères de s1 dans result */
-	i = 0;
-	while (s1[i])
-	{
-		result[i] = s1[i];
-		i++;
-	}
-	/* copier les caractères de s2 à la suite de s1 */
-	i = 0;
-	while (s2[i])
-	{
-		result[leng1 + i] = s2[i];
-		i++;
-	}
-	/* ajouter le caractère nul pour terminer la chaîne */
-	result[leng1 + leng2] = '\0';
-		return (result);
+	for (i = 0; i < len1; i++)
+		res[i] = s1[i];
+	for (j = 0; j < len2; j++)
+		res[len1 + j] = s2[j];
+
+	res[len1 + len2] = '\0';
+	return (res);
 }
