@@ -1,12 +1,14 @@
 #include "main.h"
 #include <stdlib.h>
+
 /**
  * string_nconcat - concatenates two strings.
- * @s1: pointer char 1
- * @s2: pointer char 2
- * @n: integer
+ * @s1: first string
+ * @s2: second string
+ * @n: number of bytes of s2 to concatenate
  *
- * Return: return a pointer
+ * Return: pointer to newly allocated memory containing s1 + n bytes of s2,
+ *         or NULL on failure
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
@@ -29,21 +31,22 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		leng2++;
 
 	if (n >= leng2)
-	n = leng2;
+		n = leng2;
 
-	/* alouer de la memoire */
+	/* allocate memory */
 	ptr = malloc((leng1 + n + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 
-	/* copier s1 dans ptr */
+	/* copy s1 into ptr */
 	for (i = 0; i < leng1; i++)
 		ptr[i] = s1[i];
 
-	
+	/* copy n bytes of s2 */
 	for (j = 0; j < n; j++)
 		ptr[i + j] = s2[j];
-	/* add le caradtere '\0' */
+
+	/* null terminate */
 	ptr[i + j] = '\0';
 
 	return (ptr);
