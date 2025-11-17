@@ -1,33 +1,51 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 /**
-* create_array - creates an array of chars initializes it with a specific char.
-* @size: unsigned integer
-* @c: char
-*
-* Return: NULL if size = 0, Returns a pointer to the array, or NULL if it fails
-*/
-
-/* creation de tableau dynamique */
-char *create_array(unsigned int size, char c)
+ * simple_print_buffer - prints buffer in hexa
+ * @buffer: the address of memory to print
+ * @size: the size of the memory to print
+ *
+ * Return: Nothing.
+ */
+void simple_print_buffer(char *buffer, unsigned int size)
 {
-	char *array;
-	unsigned int i;
+    unsigned int i;
 
-	/* verifie la premiere conditions */
-	if (size == 0)
-		return (NULL);
+    i = 0;
+    while (i < size)
+    {
+        if (i % 10)
+        {
+            printf(" ");
+        }
+        if (!(i % 10) && i)
+        {
+            printf("\n");
+        }
+        printf("0x%02x", buffer[i]);
+        i++;
+    }
+    printf("\n");
+}
 
-	/* comment utiliser malloc (alloue de la memoire) */
-	array = malloc(size * sizeof(char));
-	/* verification si malloc a marcher */
-	if (array == NULL)
-		return (NULL);
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    char *buffer;
 
-	/* boucle for pour remplir le tableau avce c */
-	for (i = 0; i < size; i++)
-		array[i] = c;
-
-	/* rendre la boite */
-	return (array);
+    buffer = create_array(98, 'H');
+    if  (buffer == NULL)
+    {
+        printf("failed to allocate memory\n");
+        return (1);
+    }
+    simple_print_buffer(buffer, 98);
+    free(buffer);
+    return (0);
 }
