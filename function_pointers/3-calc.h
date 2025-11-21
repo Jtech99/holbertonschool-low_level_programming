@@ -1,56 +1,23 @@
-#include "3-calc.h"
+#ifndef MAIN_H
+#define MAIN_H
+
+int (*get_op_func(char *s))(int a, int b);
+int op_add(int a, int b);
+int op_sub(int a, int b);
+int op_mul(int a, int b);
+int op_div(int a, int b);
+int op_mod(int a, int b);
 
 /**
- * op_add - addition
- * @a: first number
- * @b: second number
- * Return: a + b
+ * struct op - Struct op
+ *
+ * @op: The operator
+ * @f: The function associated
  */
-int op_add(int a, int b)
+typedef struct op
 {
-    return (a + b);
-}
+	char *op;
+	int (*f)(int a, int b);
+} op_t;
 
-/**
- * op_sub - subtraction
- * @a: first number
- * @b: second number
- * Return: a - b
- */
-int op_sub(int a, int b)
-{
-    return (a - b);
-}
-
-/**
- * op_mul - multiplication
- * @a: first number
- * @b: second number
- * Return: a * b
- */
-int op_mul(int a, int b)
-{
-    return (a * b);
-}
-
-/**
- * op_div - division
- * @a: dividend
- * @b: divisor
- * Return: a / b
- */
-int op_div(int a, int b)
-{
-    return (a / b);
-}
-
-/**
- * op_mod - modulo
- * @a: number
- * @b: divisor
- * Return: remainder of division
- */
-int op_mod(int a, int b)
-{
-    return (a % b);
-}
+#endif /* MAIN_H */
